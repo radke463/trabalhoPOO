@@ -1,6 +1,9 @@
 package loja.funcionalidade;
 
 import java.util.Scanner;
+import java.util.stream.Collectors;
+
+import loja.veiculos.Carro;
 
 public class LojaDeCarros {
 
@@ -10,7 +13,14 @@ public class LojaDeCarros {
 		int opcao;
 		Boolean continua = true;
 		
-		while(continua) {
+		preencherDados();
+		
+		listarVeiculosNaoVendidos();
+		
+		venderPorPlaca("DRL-1085");
+		
+		listarVeiculosNaoVendidos();
+		/*while(continua) {
 			mostrarMenuPrincipal();
 			
 			opcao = scan.nextInt();
@@ -23,7 +33,14 @@ public class LojaDeCarros {
 				case 5: venderPorPlaca(); break;
 				default: continua = false; break;
 			}
-		}
+		}*/
+	}
+	
+	public static void preencherDados() {
+		ItemDeVenda item = new Carro(2005, 5, 20000.00F, 116200, 12000, 1000, "Honda", "Fit", "DRL-1085", false);
+		FakeBD.Lista.add(item);
+		
+		// ItemDeVenda é Carro??  ->>        if (item instanceof Carro)
 	}
 
 	public static void mostrarMenuPrincipal() {
@@ -61,19 +78,28 @@ public class LojaDeCarros {
 	}
 	
 	public static void listarVeiculosNaoVendidos() {
-		//TODO
+		FakeBD.Lista.stream()
+		.filter(item -> !item.isVendido())
+		.forEach(item -> System.out.println(item.getValor()));
 	}
 	
 	public static void listarVeiculos() {
-		//TODO
+		
 	}
 	
 	public static void detalhesPorPlaca() {
-		//TODO
+		FakeBD.Lista.stream()
+		.filter(item -> !item.isVendido())
+		.forEach(item -> System.out.println(item.getValor()));
 	}
 	
-	public static void venderPorPlaca() {
-		//TODO
+	public static void venderPorPlaca(String placa) {
+		FakeBD.Lista.stream()
+		.filter(item -> item.getPlaca().equals(placa))
+		.filter(item -> !item.isVendido())
+		.forEach(item -> item.vender());
+		
+		System.out.println("Veículo vendido com sucesso");
 	}
 	
 	public final static void clearConsole()

@@ -1,18 +1,20 @@
 package loja.veiculos;
 
-public abstract class Veiculo {
+import loja.funcionalidade.ItemDeVenda;
+
+public abstract class Veiculo implements ItemDeVenda {
 	protected int anoDeFabricacao;
 	protected int numeroDeMarchas;
-	protected float valorDoVeiculo;
-	protected float quilometragem;
-	protected float cilindradas;
-	protected float potencia;
+	protected double valorDoVeiculo;
+	protected double quilometragem;
+	protected double cilindradas;
+	protected double potencia;
 	protected String marca;
 	protected String modelo;
 	protected String placa;
 	protected Boolean vendido;
 	
-	Veiculo(int ano, int marchas, float valor, float km, float cilindradas, float potencia, String marca, String modelo, String placa, Boolean vendido) {
+	Veiculo(int ano, int marchas, double valor, double km, double cilindradas, double potencia, String marca, String modelo, String placa, Boolean vendido) {
 		this.anoDeFabricacao = ano;
 		this.numeroDeMarchas = marchas;
 		this.valorDoVeiculo = valor;
@@ -23,5 +25,31 @@ public abstract class Veiculo {
 		this.modelo = modelo;
 		this.placa = placa;
 		this.vendido = vendido;
+	}
+	
+	/**
+	 * @param String wow
+	 */
+	@Override
+	public Boolean isVendido() {
+		return this.vendido;
+	}
+
+	@Override
+	public double getValor() {
+		return this.valorDoVeiculo;
+	}
+	
+	@Override
+	public String getPlaca() {
+		return this.placa;
+	}
+	
+	@Override
+	public void vender() {
+		if (isVendido())
+			throw new RuntimeException("Esse veículo ja foi vendido");
+		
+		this.vendido = true;
 	}
 }
