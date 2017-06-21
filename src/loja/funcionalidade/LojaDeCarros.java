@@ -8,17 +8,21 @@ public class LojaDeCarros {
 	
 	public static void main(String[] args) {
 		int opcao;
+		Boolean continua = true;
 		
-		mostrarMenuPrincipal();
-		
-		opcao = scan.nextInt();
-		
-		switch(opcao) {
-			case 1: mostrarMenuCadastro();break;
-			case 2: break;
-			case 3: break;
-			case 4: break;
-			case 5: break;
+		while(continua) {
+			mostrarMenuPrincipal();
+			
+			opcao = scan.nextInt();
+			
+			switch(opcao) {
+				case 1: mostrarMenuCadastro(); break;
+				case 2: listarVeiculosNaoVendidos(); break;
+				case 3: listarVeiculos(); break;
+				case 4: detalhesPorPlaca(); break;
+				case 5: venderPorPlaca(); break;
+				default: continua = false; break;
+			}
 		}
 	}
 
@@ -31,10 +35,12 @@ public class LojaDeCarros {
 		System.out.println("3 - Listar veículos por ano/modelo/marca/quilometragem");
 		System.out.println("4 - Detalhes por placa");
 		System.out.println("5 - Vender veículo");
+		System.out.println("6 - Sair");
 		System.out.println("Opção: ");
 	}
 	
 	public static void mostrarMenuCadastro() {
+		Sistema sistema = new Sistema();
 		int op;
 		
 		clearConsole();
@@ -48,8 +54,26 @@ public class LojaDeCarros {
 		
 		op = scan.nextInt();
 		
-		if (op == 4)
-			System.out.println("TODO retornar ao menu principal");
+		if (op > 0 && op > 4) {
+			//TODO pegar outros dados e chamar função iniciarCadastro
+			//sistema.iniciarCadastro(ano, marchas, valor, km, cilindradas, potencia, marca, modelo, placa, vendido, acentos, portas, tipo);
+		}
+	}
+	
+	public static void listarVeiculosNaoVendidos() {
+		//TODO
+	}
+	
+	public static void listarVeiculos() {
+		//TODO
+	}
+	
+	public static void detalhesPorPlaca() {
+		//TODO
+	}
+	
+	public static void venderPorPlaca() {
+		//TODO
 	}
 	
 	public final static void clearConsole()

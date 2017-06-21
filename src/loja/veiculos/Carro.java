@@ -26,5 +26,4 @@ public class Carro extends Veiculo{
 	public void setNumeroDeAcentos(int numeroDeAcentos) {
 		this.numeroDeAcentos = numeroDeAcentos;
 	}
-
 }
